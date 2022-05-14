@@ -5,6 +5,5 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public interface AbstractFactory {
-
     void createStartingObject(int numberOfObjects);
 }
