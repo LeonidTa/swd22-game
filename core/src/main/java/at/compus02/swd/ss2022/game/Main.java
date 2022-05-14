@@ -51,11 +51,16 @@ public class Main extends ApplicationAdapter {
 		}
 	}
 
+
+
 	private void draw() {
 		batch.setProjectionMatrix(viewport.getCamera().combined);
 		batch.begin();
 
+		int i = 0;
+
 		for(GameObject tileFactory : tileFactory.getTileArray()) {
+			tileFactory.setPosition(i++, i++);
 			tileFactory.draw(batch);
 		}
 		for(GameObject gameObject : gameObjects) {
