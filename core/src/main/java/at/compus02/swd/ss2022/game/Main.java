@@ -33,7 +33,7 @@ public class Main extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		gameObjects.add(new Sign());
 
-		tileFactory.createStartingObject(40, "GRAS");
+		tileFactory.createStartingObject(60, "GRAS");
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		Gdx.input.setInputProcessor(this.gameInput);
@@ -60,8 +60,13 @@ public class Main extends ApplicationAdapter {
 		int i = 0;
 
 		for(GameObject tileFactory : tileFactory.getTileArray()) {
-			tileFactory.setPosition(i++, i++);
-			tileFactory.draw(batch);
+			for (int j = -300; j < 300; j++) {
+				for (int k = -300; k < 300; k++) {
+					tileFactory.setPosition(j,k);
+					tileFactory.draw(batch);
+				}
+			}
+
 		}
 		for(GameObject gameObject : gameObjects) {
 			gameObject.draw(batch);
