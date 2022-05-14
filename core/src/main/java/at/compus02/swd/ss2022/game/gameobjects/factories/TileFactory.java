@@ -8,13 +8,15 @@ import at.compus02.swd.ss2022.game.gameobjects.tiles.WaterTile;
 
 import java.util.ArrayList;
 
-public class TileFactory  implements AbstractFactory{
+public class TileFactory  implements AbstractFactory {
+    private ArrayList<GameObject> tileArray = new ArrayList<>();
 
+    public ArrayList<GameObject> getTileArray() {
+        return tileArray;
+    }
 
     @Override
     public void createStartingObject(int numberOfObjects, String tileType) {
-        ArrayList<GameObject> tileArray = new ArrayList<>();
-
         for (int i = 0; i < numberOfObjects; i++){
             switch (tileType) {
                 case "GRAS":
@@ -25,7 +27,6 @@ public class TileFactory  implements AbstractFactory{
                    tileArray.add(new WallTile());
                 case "WATER":
                     tileArray.add(new WaterTile());
-
             }
         }
 

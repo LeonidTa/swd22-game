@@ -2,6 +2,7 @@ package at.compus02.swd.ss2022.game;
 
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import at.compus02.swd.ss2022.game.gameobjects.Sign;
+import at.compus02.swd.ss2022.game.gameobjects.factories.TileFactory;
 import at.compus02.swd.ss2022.game.input.GameInput;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -25,25 +26,38 @@ public class Main extends ApplicationAdapter {
 	private final float logicFrameTime = 1 / updatesPerSecond;
 	private float deltaAccumulator = 0;
 	private BitmapFont font;
+	TileFactory tileFactory = new TileFactory();
 
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
 		gameObjects.add(new Sign());
+
+		tileFactory.createStartingObject(40, "GRAS");
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		Gdx.input.setInputProcessor(this.gameInput);
+
+
 	}
 
 	private void act(float delta) {
 		for(GameObject gameObject : gameObjects) {
 			gameObject.act(delta);
 		}
+
+		for (GameObject tile : tileFactory.getTileArray()) {
+			tile.act(delta);
+		}
 	}
 
 	private void draw() {
 		batch.setProjectionMatrix(viewport.getCamera().combined);
 		batch.begin();
+
+		for(GameObject tileFactory : tileFactory.getTileArray()) {
+			tileFactory.draw(batch);
+		}
 		for(GameObject gameObject : gameObjects) {
 			gameObject.draw(batch);
 		}
