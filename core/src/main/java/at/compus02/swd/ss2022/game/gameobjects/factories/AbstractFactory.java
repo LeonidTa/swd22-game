@@ -5,6 +5,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public interface AbstractFactory {
-    Texture image = null;
-    Sprite sprite = null;
+
+    void createStartingObject(int numberOfObjects);
 }

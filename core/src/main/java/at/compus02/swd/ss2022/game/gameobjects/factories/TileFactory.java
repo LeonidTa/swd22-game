@@ -8,13 +8,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
 
-public class TileFactory  {
+public class TileFactory  implements AbstractFactory{
 
-    public void createStartingTiles(int numberOfTiles) {
 
+    @Override
+    public void createStartingObject(int numberOfObjects) {
         ArrayList<Tile> tiles = new ArrayList<>();
 
-        for (int i = 0; i < numberOfTiles; i++){
+        for (int i = 0; i < numberOfObjects; i++){
 
             Tile tile = new Tile();
             tiles.add(tile);
