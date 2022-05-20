@@ -101,16 +101,17 @@ public class Main extends ApplicationAdapter {
 		int y = 0;
 		while (true) {
 			if (ke.getKeyCode() == KeyEvent.VK_UP) {
-				player1.setPosition(x = 0, y += 32);
+				player1.setPosition(x, y += 32);
 			} //VK_UP is a pre-defined constant value
 			else if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
-
+				player1.setPosition(x, y-=32);
 			}
 			else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
+				player1.setPosition(x-=8, y);
 
 			}
 			else if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-
+				player1.setPosition(x+=8, y);
 			}
 		}
 	}
