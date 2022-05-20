@@ -1,8 +1,11 @@
 package at.compus02.swd.ss2022.game;
 
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
+import at.compus02.swd.ss2022.game.gameobjects.Player;
 import at.compus02.swd.ss2022.game.gameobjects.Sign;
+import at.compus02.swd.ss2022.game.gameobjects.factories.PlayerFactory;
 import at.compus02.swd.ss2022.game.gameobjects.factories.TileFactory;
+import at.compus02.swd.ss2022.game.gameobjects.tiles.GrasTile;
 import at.compus02.swd.ss2022.game.input.GameInput;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -17,7 +20,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 public class Main extends ApplicationAdapter {
 	private SpriteBatch batch;
 
-	private ExtendViewport viewport = new ExtendViewport(480.0f, 480.0f, 480.0f, 480.0f);
+	private ExtendViewport viewport = new ExtendViewport(512.0f, 512.0f, 512.0f, 512.0f);
 	private GameInput gameInput = new GameInput();
 
 	private Array<GameObject> gameObjects = new Array<>();
@@ -27,11 +30,15 @@ public class Main extends ApplicationAdapter {
 	private float deltaAccumulator = 0;
 	private BitmapFont font;
 	TileFactory tileFactory = new TileFactory();
+	//PlayerFactory playerFactory = new PlayerFactory();
 
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
-		gameObjects.add(new Sign());
+
+
+		//playerFactory.createStartingObject(1, "player1");
+		gameObjects.add(new Player());
 
 		tileFactory.createStartingObject(60, "GRAS");
 		font = new BitmapFont();
@@ -57,12 +64,13 @@ public class Main extends ApplicationAdapter {
 		batch.setProjectionMatrix(viewport.getCamera().combined);
 		batch.begin();
 
-		int i = 0;
 
+		int interval = 0;
 		for(GameObject tileFactory : tileFactory.getTileArray()) {
-			for (int j = -300; j < 300; j++) {
-				for (int k = -300; k < 300; k++) {
-					tileFactory.setPosition(j,k);
+
+			for (int i = -240; i < 240; i+=32) {
+				for (int j = -240; j < 240; j+=32) {
+					tileFactory.setPosition(i,j);
 					tileFactory.draw(batch);
 				}
 			}
