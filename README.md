@@ -6,4 +6,3 @@ Jasmin Morak<br>
 Yana Gummerer<br>
 Karl Lienhart<br>
 Verena Aldrian<br>
-Andreas Weinhofer<br>
