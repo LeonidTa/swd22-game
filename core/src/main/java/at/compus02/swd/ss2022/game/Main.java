@@ -30,7 +30,7 @@ public class Main extends ApplicationAdapter {
 	private float deltaAccumulator = 0;
 	private BitmapFont font;
 	TileFactory tileFactory = new TileFactory();
-	PlayerFactory playerFactory = new PlayerFactory();
+	//PlayerFactory playerFactory = new PlayerFactory();
 
 	@Override
 	public void create() {
