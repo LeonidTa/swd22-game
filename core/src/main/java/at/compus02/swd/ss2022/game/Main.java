@@ -34,9 +34,10 @@ public class Main extends ApplicationAdapter {
 	private final float logicFrameTime = 1 / updatesPerSecond;
 	private float deltaAccumulator = 0;
 	private BitmapFont font;
+	Player player;
 	TileFactory grasFactory = new TileFactory();
 	TileFactory waterFactory = new TileFactory();
-	GameInput gi = new GameInput();
+
 
 	@Override
 	public void create() {
@@ -47,7 +48,8 @@ public class Main extends ApplicationAdapter {
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		Gdx.input.setInputProcessor(this.gameInput);
-
+		player = new Player();
+		gameInput.setPlayer1(player);
 
 	}
 
@@ -91,16 +93,13 @@ public class Main extends ApplicationAdapter {
 				waterObject.draw(batch);
 			}
 		}
-
+		player.draw(batch);
 
 		font.draw(batch, "Hello Game", -220, -220);
 		batch.end();
 
 	}
 
-	public void movingPlayer(){
-
-	}
 
 	@Override
 	public void render() {
