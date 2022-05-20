@@ -6,9 +6,11 @@ import at.compus02.swd.ss2022.game.gameobjects.Sign;
 import at.compus02.swd.ss2022.game.gameobjects.factories.PlayerFactory;
 import at.compus02.swd.ss2022.game.gameobjects.factories.TileFactory;
 import at.compus02.swd.ss2022.game.gameobjects.tiles.GrasTile;
+import at.compus02.swd.ss2022.game.gameobjects.tiles.GravelTile;
 import at.compus02.swd.ss2022.game.input.GameInput;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -34,7 +36,7 @@ public class Main extends ApplicationAdapter {
 	private BitmapFont font;
 	TileFactory grasFactory = new TileFactory();
 	TileFactory waterFactory = new TileFactory();
-	Player player1 = new Player();
+	GameInput gi = new GameInput();
 
 	@Override
 	public void create() {
@@ -87,33 +89,17 @@ public class Main extends ApplicationAdapter {
 			} else {
 				waterObject.setPosition(x+=32,0);
 				waterObject.draw(batch);
-
 			}
 		}
 
 
 		font.draw(batch, "Hello Game", -220, -220);
 		batch.end();
+
 	}
 
-	public void movingPlayer(KeyEvent ke){
-		int x = 0;
-		int y = 0;
-		while (true) {
-			if (ke.getKeyCode() == KeyEvent.VK_UP) {
-				player1.setPosition(x, y += 32);
-			} //VK_UP is a pre-defined constant value
-			else if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
-				player1.setPosition(x, y-=32);
-			}
-			else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-				player1.setPosition(x-=8, y);
+	public void movingPlayer(){
 
-			}
-			else if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-				player1.setPosition(x+=8, y);
-			}
-		}
 	}
 
 	@Override
