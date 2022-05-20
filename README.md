@@ -1,9 +1,9 @@
-<h3>Projektmitgleider:</h3>
+<h3>Projektmitglieder:</h3>
 
-Leonid Tahiraj
-Kevin Handolescu
-Jasmin Morak
-Yana Gummerer
-Karl Lienhart
-Verena Aldrian
-Andreas Weinhofer
+Leonid Tahiraj<br>
+Kevin Handolescu<br>
+Jasmin Morak<br>
+Yana Gummerer<br>
+Karl Lienhart<br>
+Verena Aldrian<br>
+Andreas Weinhofer<br>
