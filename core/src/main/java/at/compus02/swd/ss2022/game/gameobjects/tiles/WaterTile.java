@@ -21,11 +21,11 @@ public class WaterTile implements GameObject {
 
     @Override
     public void setPosition(float x, float y) {
-        sprite.setPosition(x, y);
     }
+
+
 
     @Override
     public void draw(SpriteBatch batch) {
-        sprite.draw(batch);
     }
 }

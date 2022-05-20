@@ -16,6 +16,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
+import java.util.Scanner;
+
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends ApplicationAdapter {
 	private SpriteBatch batch;
@@ -38,8 +40,8 @@ public class Main extends ApplicationAdapter {
 		batch = new SpriteBatch();
 
 
-		//playerFactory.createStartingObject(1, "player1");
-		gameObjects.add(new Player());
+		playerFactory.createStartingObject(1, "player1");
+
 
 		grasFactory.createStartingObject(240, "GRAS");
 		waterFactory.createStartingObject(32, "WATER");
@@ -54,7 +56,6 @@ public class Main extends ApplicationAdapter {
 		for(GameObject gameObject : gameObjects) {
 			gameObject.act(delta);
 		}
-
 		for (GameObject tile : grasFactory.getTileArray()) {
 			tile.act(delta);
 		}
@@ -89,6 +90,12 @@ public class Main extends ApplicationAdapter {
 				waterObject.setPosition(x+=8,y);
 				waterObject.draw(batch);
 			} else break;
+		}
+		for (GameObject gameObject : playerFactory.getPlayerArray()) {
+			x=0;
+			y=0;
+			gameObject.setPosition(x,y);
+			gameObject.draw(batch);
 		}
 
 		font.draw(batch, "Hello Game", -220, -220);

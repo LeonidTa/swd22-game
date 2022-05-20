@@ -21,11 +21,13 @@ public class GravelTile implements GameObject {
 
     @Override
     public void setPosition(float x, float y) {
-
     }
+
+
 
     @Override
     public void draw(SpriteBatch batch) {
-
     }
+
+
 }

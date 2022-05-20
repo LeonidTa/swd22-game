@@ -21,11 +21,11 @@ public class WallTile implements GameObject {
 
     @Override
     public void setPosition(float x, float y) {
-
     }
+
+
 
     @Override
     public void draw(SpriteBatch batch) {
-
     }
 }
