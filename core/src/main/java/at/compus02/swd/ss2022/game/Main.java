@@ -16,6 +16,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
+import java.awt.event.KeyEvent;
 import java.util.Scanner;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
@@ -33,15 +34,11 @@ public class Main extends ApplicationAdapter {
 	private BitmapFont font;
 	TileFactory grasFactory = new TileFactory();
 	TileFactory waterFactory = new TileFactory();
-	PlayerFactory playerFactory = new PlayerFactory();
+	Player player1 = new Player();
 
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
-
-
-		playerFactory.createStartingObject(1, "player1");
-
 
 		grasFactory.createStartingObject(240, "GRAS");
 		waterFactory.createStartingObject(32, "WATER");
@@ -83,23 +80,39 @@ public class Main extends ApplicationAdapter {
 			tileObject.draw(batch);
 		}
 
-		x = -240;
-		y = 120;
+		x = -250;
 		for (GameObject waterObject : waterFactory.getTileArray()) {
-			if (x <= 240){
-				waterObject.setPosition(x+=8,y);
+			if (x == 250){
+				break;
+			} else {
+				waterObject.setPosition(x+=32,0);
 				waterObject.draw(batch);
-			} else break;
+
+			}
 		}
-		for (GameObject gameObject : playerFactory.getPlayerArray()) {
-			x=0;
-			y=0;
-			gameObject.setPosition(x,y);
-			gameObject.draw(batch);
-		}
+
 
 		font.draw(batch, "Hello Game", -220, -220);
 		batch.end();
+	}
+
+	public void movingPlayer(KeyEvent ke){
+		int x = 0;
+		int y = 0;
+		while (true) {
+			if (ke.getKeyCode() == KeyEvent.VK_UP) {
+				player1.setPosition(x = 0, y += 32);
+			} //VK_UP is a pre-defined constant value
+			else if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
+
+			}
+			else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
+
+			}
+			else if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
+
+			}
+		}
 	}
 
 	@Override
