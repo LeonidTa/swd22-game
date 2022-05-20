@@ -65,20 +65,17 @@ public class Main extends ApplicationAdapter {
 		batch.begin();
 
 
-		int interval = 0;
-		for(GameObject tileFactory : tileFactory.getTileArray()) {
-
-			for (int i = -240; i < 240; i+=32) {
-				for (int j = -240; j < 240; j+=32) {
-					tileFactory.setPosition(i,j);
-					tileFactory.draw(batch);
-				}
+		int x = -240;
+		int y = -240;
+		for(GameObject tileObject : tileFactory.getTileArray()) {
+			x += 15;
+			if(x == 240) {
+				y += 15;
 			}
+			tileObject.setPosition(x, y);
+			tileObject.draw(batch);
+		}
 
-		}
-		for(GameObject gameObject : gameObjects) {
-			gameObject.draw(batch);
-		}
 		font.draw(batch, "Hello Game", -220, -220);
 		batch.end();
 	}
