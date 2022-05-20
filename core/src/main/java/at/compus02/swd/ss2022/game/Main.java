@@ -29,7 +29,8 @@ public class Main extends ApplicationAdapter {
 	private final float logicFrameTime = 1 / updatesPerSecond;
 	private float deltaAccumulator = 0;
 	private BitmapFont font;
-	TileFactory tileFactory = new TileFactory();
+	TileFactory grasFactory = new TileFactory();
+	TileFactory waterFactory = new TileFactory();
 	PlayerFactory playerFactory = new PlayerFactory();
 
 	@Override
@@ -40,7 +41,8 @@ public class Main extends ApplicationAdapter {
 		//playerFactory.createStartingObject(1, "player1");
 		gameObjects.add(new Player());
 
-		tileFactory.createStartingObject(60, "GRAS");
+		grasFactory.createStartingObject(240, "GRAS");
+		waterFactory.createStartingObject(32, "WATER");
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		Gdx.input.setInputProcessor(this.gameInput);
@@ -53,7 +55,10 @@ public class Main extends ApplicationAdapter {
 			gameObject.act(delta);
 		}
 
-		for (GameObject tile : tileFactory.getTileArray()) {
+		for (GameObject tile : grasFactory.getTileArray()) {
+			tile.act(delta);
+		}
+		for (GameObject tile : waterFactory.getTileArray()) {
 			tile.act(delta);
 		}
 	}
@@ -67,13 +72,23 @@ public class Main extends ApplicationAdapter {
 
 		int x = -240;
 		int y = -240;
-		for(GameObject tileObject : tileFactory.getTileArray()) {
-			x += 15;
+		for(GameObject tileObject : grasFactory.getTileArray()) {
+			x += 8;
 			if(x == 240) {
-				y += 15;
+				x = -240;
+				y += 32;
 			}
 			tileObject.setPosition(x, y);
 			tileObject.draw(batch);
+		}
+
+		x = -240;
+		y = 120;
+		for (GameObject waterObject : waterFactory.getTileArray()) {
+			if (x <= 240){
+				waterObject.setPosition(x+=8,y);
+				waterObject.draw(batch);
+			} else break;
 		}
 
 		font.draw(batch, "Hello Game", -220, -220);
