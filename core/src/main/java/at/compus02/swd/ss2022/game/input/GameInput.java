@@ -6,7 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 
-public class GameInput extends InputAdapter {
+public class GameInput extends InputAdapter{
     private Player player1;
     private int x = 0;
     private int y = 0;
@@ -23,10 +23,12 @@ public class GameInput extends InputAdapter {
 			else if (keycode == Input.Keys.DOWN) {
                 player1.setPosition(x, y -= 32);
             } else if (keycode == Input.Keys.LEFT) {
-                player1.setPosition(x -= 8, y);
+                player1.setPosition(x -= 32, y);
             } else if (keycode == Input.Keys.RIGHT) {
-                player1.setPosition(x += 8, y);
+                player1.setPosition(x += 32, y);
             }
             return true;
     }
+
+
 }

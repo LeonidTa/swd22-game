@@ -9,14 +9,18 @@ public class Player implements GameObject{
     private Sprite sprite;
 
     public Player() {
-        image = new Texture("player.png");
+        //tr.getTexture("Player");
+        image = AssetRepository.getTexture("player");
+        //image = new Texture("player.png");// <-- ursprünglich
         sprite = new Sprite(image);
+
     }
 
     @Override
     public void act(float delta) {
 
     }
+
 
     @Override
     public void setPosition(float x, float y) {
