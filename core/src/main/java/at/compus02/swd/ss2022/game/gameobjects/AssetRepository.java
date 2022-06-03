@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class AssetRepository {
 
-    private static AssetRepository assetRepository;
+    private static AssetRepository assetRepository = new AssetRepository();
     private static Texture texture;
     private static Sound sound;
 
@@ -15,7 +15,7 @@ public class AssetRepository {
     }
 
     private AssetRepository getInstance() {
-        return assetRepository = new AssetRepository();
+        return assetRepository;
     }
 
     public static Texture getTexture(String type) {
@@ -53,12 +53,17 @@ public class AssetRepository {
 
 
 
+    public void preloadAssets() {
+        Texture tile_gras = new Texture("tile_gras");
+        Texture tile_gravel = new Texture("tile_gras");
+        Texture tile_wall = new Texture("tile_gras");
+        Texture tile_water = new Texture("tile_gras");
+
+    }
 
 
     public void dispose() {
-        assetRepository = null;
-        texture = null;
+        texture.dispose();
     }
-
 }
 

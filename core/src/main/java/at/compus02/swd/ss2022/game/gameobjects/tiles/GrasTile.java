@@ -11,7 +11,7 @@ public class GrasTile implements GameObject {
     private Sprite sprite;
 
     public GrasTile() {
-        image = AssetRepository.getTexture("tile_wall");
+        image = AssetRepository.getTexture("tile_gras");
         //image = new Texture("tile_gras.png");
         sprite = new Sprite(image);
     }
@@ -30,4 +30,6 @@ public class GrasTile implements GameObject {
     public void draw(SpriteBatch batch) {
         sprite.draw(batch);
     }
+
+
 }

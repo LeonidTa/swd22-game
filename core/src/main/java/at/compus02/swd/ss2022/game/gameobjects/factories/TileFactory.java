@@ -10,15 +10,12 @@ import java.util.ArrayList;
 
 public class TileFactory  implements AbstractFactory {
 
-    private ArrayList<GameObject> tileArray = new ArrayList<>();
-
-    public ArrayList<GameObject> getTileArray() {
-        return tileArray;
-    }
 
 
     @Override
-    public void createStartingObject(int numberOfObjects, String tileType) {
+    public ArrayList<GameObject> createStartingObject(int numberOfObjects, String tileType) {
+        ArrayList<GameObject> tileArray = new ArrayList<>();
+
         for (int i = 0; i < numberOfObjects; i++) {
             switch (tileType) {
                 case "GRAS":
@@ -30,6 +27,7 @@ public class TileFactory  implements AbstractFactory {
                 case "WATER":
                     tileArray.add(new WaterTile());
             }
-        }
+       }
+        return tileArray;
     }
 }

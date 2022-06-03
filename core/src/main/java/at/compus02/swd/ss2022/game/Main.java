@@ -35,16 +35,13 @@ public class Main extends ApplicationAdapter {
 	private float deltaAccumulator = 0;
 	private BitmapFont font;
 	Player player;
-	TileFactory grasFactory = new TileFactory();
-	TileFactory waterFactory = new TileFactory();
+	TileFactory tilefactory = new TileFactory();
 
 
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
 
-		grasFactory.createStartingObject(240, "GRAS");
-		waterFactory.createStartingObject(32, "WATER");
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		Gdx.input.setInputProcessor(this.gameInput);
@@ -57,12 +54,6 @@ public class Main extends ApplicationAdapter {
 		for(GameObject gameObject : gameObjects) {
 			gameObject.act(delta);
 		}
-		for (GameObject tile : grasFactory.getTileArray()) {
-			tile.act(delta);
-		}
-		for (GameObject tile : waterFactory.getTileArray()) {
-			tile.act(delta);
-		}
 	}
 
 
@@ -74,7 +65,7 @@ public class Main extends ApplicationAdapter {
 
 		int x = -240;
 		int y = -240;
-		for(GameObject tileObject : grasFactory.getTileArray()) {
+		for(GameObject tileObject : tilefactory.createStartingObject(225, "GRAS")) {
 			x += 8;
 			if(x == 240) {
 				x = -240;
@@ -84,15 +75,6 @@ public class Main extends ApplicationAdapter {
 			tileObject.draw(batch);
 		}
 
-		x = -250;
-		for (GameObject waterObject : waterFactory.getTileArray()) {
-			if (x == 250){
-				break;
-			} else {
-				waterObject.setPosition(x+=32,0);
-				waterObject.draw(batch);
-			}
-		}
 		player.draw(batch);
 
 		font.draw(batch, "Hello Game", -220, -220);

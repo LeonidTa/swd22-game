@@ -12,16 +12,14 @@ import java.util.ArrayList;
 
 public class PlayerFactory implements AbstractFactory{
 
-    private ArrayList<GameObject> playerArray = new ArrayList<>();
-
-    public ArrayList<GameObject> getPlayerArray() {
-        return playerArray;
-    }
 
     @Override
-    public void createStartingObject(int numberOfObjects, String playerType) {
+    public ArrayList<GameObject> createStartingObject(int numberOfObjects, String playerType) {
+        ArrayList<GameObject> playerArray = new ArrayList<>();
+
         if (playerType.equals("player1")) {
             playerArray.add(new Player());
         }
+        return playerArray;
     }
 }
