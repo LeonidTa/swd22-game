@@ -3,11 +3,14 @@ package at.compus02.swd.ss2022.game.gameobjects;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 
+import java.util.HashMap;
+
 public class AssetRepository {
 
     private static AssetRepository assetRepository = new AssetRepository();
     private static Texture texture;
     private static Sound sound;
+    private static HashMap<String, Texture> allTextures;
 
 
     public AssetRepository() {
@@ -18,47 +21,31 @@ public class AssetRepository {
         return assetRepository;
     }
 
+    //getTexture(String type) takes the desired texture from allTextures Map
     public static Texture getTexture(String type) {
-        switch (type) {
-            case "player":
-                texture = new Texture("player.png");
-                break;
-            case "bush":
-                texture = new Texture("bush.png");
-                break;
-            case "log":
-                texture = new Texture("log.png");
-                break;
-            case "sign":
-                texture = new Texture("sign.png");
-                break;
-            case "stone":
-                texture = new Texture("stone.png");
-                break;
-            case "tile_gras":
-                texture = new Texture("tile_gras.png");
-                break;
-            case "tile_gravel":
-                texture = new Texture("tile_gravel.png");
-                break;
-            case "tile_wall":
-                texture = new Texture("tile_wall.png");
-                break;
-            case "tile_water":
-                texture = new Texture("tile_water.png");
-                break;
+        if (allTextures.containsKey(type)) {
+            return allTextures.get(type);
+        } else {
+            throw new IllegalArgumentException("Texture not found");
         }
-        return texture;
     }
 
 
-
+    // When preloadAssets() is called, all textures are created and saved in a map.
+    // This map then instantiates the attribute "allTextures".
     public void preloadAssets() {
-        Texture tile_gras = new Texture("tile_gras");
-        Texture tile_gravel = new Texture("tile_gras");
-        Texture tile_wall = new Texture("tile_gras");
-        Texture tile_water = new Texture("tile_gras");
+        HashMap<String, Texture> textures = new HashMap<>();
+        textures.put("player", new Texture("player.png"));
+        textures.put("bush", new Texture("bush.png"));
+        textures.put("log", new Texture("log.png"));
+        textures.put("sign", new Texture("sign.png"));
+        textures.put("stone", new Texture("stone.png"));
+        textures.put("tile_gras", new Texture("tile_gras.png"));
+        textures.put("tile_gravel", new Texture("tile_gravel.png"));
+        textures.put("tile_wall", new Texture("tile_wall.png"));
+        textures.put("tile_water", new Texture("tile_water.png"));
 
+        this.allTextures = textures;
     }
 
 
