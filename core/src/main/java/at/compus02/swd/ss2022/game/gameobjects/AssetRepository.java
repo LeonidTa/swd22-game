@@ -32,7 +32,8 @@ public class AssetRepository {
 
 
     // When preloadAssets() is called, all textures are created and saved in a map.
-    // This map then instantiates the attribute "allTextures".
+    // This map then instantiates the attribute "allTextures". Don't forget: The preloadAssets first needs to be called for it to actually work!
+    //Another possible implementation would be to directly call the preloadAssets() in the getTexture(String type) method, but this would always then create all new textures
     public void preloadAssets() {
         HashMap<String, Texture> textures = new HashMap<>();
         textures.put("player", new Texture("player.png"));
