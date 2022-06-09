@@ -10,6 +10,7 @@ public class Player implements GameObject{
 
     public Player() {
         //tr.getTexture("Player");
+        AssetRepository.preloadAssets();
         image = AssetRepository.getTexture("player");
         //image = new Texture("player.png");// <-- ursprünglich
         sprite = new Sprite(image);

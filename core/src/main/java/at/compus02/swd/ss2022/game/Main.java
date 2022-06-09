@@ -19,6 +19,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
@@ -65,16 +66,18 @@ public class Main extends ApplicationAdapter {
 
 		int x = -240;
 		int y = -240;
-		for(GameObject tileObject : tilefactory.createStartingObject(225, "GRAS")) {
-			x += 8;
+
+		ArrayList<GameObject> tileObjects = tilefactory.createStartingObject(225, "GRAS");
+
+		for(GameObject objects : tileObjects) {
+			x += 32;
 			if(x == 240) {
 				x = -240;
 				y += 32;
 			}
-			tileObject.setPosition(x, y);
-			tileObject.draw(batch);
+			objects.setPosition(x, y);
+			objects.draw(batch);
 		}
-
 		player.draw(batch);
 
 		font.draw(batch, "Hello Game", -220, -220);

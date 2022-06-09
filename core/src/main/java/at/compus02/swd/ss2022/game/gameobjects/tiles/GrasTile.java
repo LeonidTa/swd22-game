@@ -11,6 +11,8 @@ public class GrasTile implements GameObject {
     private Sprite sprite;
 
     public GrasTile() {
+        AssetRepository.preloadAssets();
+
         image = AssetRepository.getTexture("tile_gras");
         //image = new Texture("tile_gras.png");
         sprite = new Sprite(image);
