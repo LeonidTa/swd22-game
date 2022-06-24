@@ -37,6 +37,7 @@ public class Main extends ApplicationAdapter {
 	private BitmapFont font;
 	Player player;
 	TileFactory tilefactory = new TileFactory();
+	ArrayList<GameObject> tileObjects;
 
 
 	@Override
@@ -48,6 +49,7 @@ public class Main extends ApplicationAdapter {
 		Gdx.input.setInputProcessor(this.gameInput);
 		player = new Player();
 		gameInput.setPlayer1(player);
+		tileObjects = tilefactory.createStartingObject(255, "GRAS");
 
 	}
 
@@ -67,16 +69,14 @@ public class Main extends ApplicationAdapter {
 		int x = -240;
 		int y = -240;
 
-		ArrayList<GameObject> tileObjects = tilefactory.createStartingObject(225, "GRAS");
-
-		for(GameObject objects : tileObjects) {
+		for(GameObject tile : tileObjects) {
 			x += 32;
 			if(x == 240) {
 				x = -240;
 				y += 32;
 			}
-			objects.setPosition(x, y);
-			objects.draw(batch);
+			tile.setPosition(x, y);
+			tile.draw(batch);
 		}
 		player.draw(batch);
 

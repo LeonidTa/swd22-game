@@ -9,12 +9,11 @@ import at.compus02.swd.ss2022.game.gameobjects.tiles.WaterTile;
 import java.util.ArrayList;
 
 public class TileFactory  implements AbstractFactory {
-    ArrayList<GameObject> tileArray = new ArrayList<>();
 
 
     @Override
     public ArrayList<GameObject> createStartingObject(int numberOfObjects, String tileType) {
-
+        ArrayList<GameObject> tileArray = new ArrayList<>();
 
         for (int i = 0; i < numberOfObjects; i++) {
             switch (tileType) {
