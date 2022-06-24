@@ -1,17 +1,15 @@
 package at.compus02.swd.ss2022.game.input;
 
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
-import at.compus02.swd.ss2022.game.gameobjects.Player;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 
 public class GameInput extends InputAdapter{
-    private Player player1;
+    private GameObject player1;
     private int x = 0;
     private int y = 0;
 
-    public void setPlayer1(Player player1) {
+    public void setPlayer1(GameObject player1) {
         this.player1 = player1;
     }
 

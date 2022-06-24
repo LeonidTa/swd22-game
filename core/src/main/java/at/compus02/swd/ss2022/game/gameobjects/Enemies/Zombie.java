@@ -1,18 +1,18 @@
-package at.compus02.swd.ss2022.game.gameobjects;
+package at.compus02.swd.ss2022.game.gameobjects.Enemies;
 
+import at.compus02.swd.ss2022.game.gameobjects.AssetRepository;
+import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Player implements GameObject {
+public class Zombie implements GameObject {
     private Texture image;
     private Sprite sprite;
 
-    public Player() {
-        //tr.getTexture("Player");
+    public Zombie() {
         AssetRepository.preloadAssets();
-        image = AssetRepository.getTexture("player");
-        //image = new Texture("player.png");// <-- ursprünglich
+        image = AssetRepository.getTexture("zombie");
         sprite = new Sprite(image);
 
     }

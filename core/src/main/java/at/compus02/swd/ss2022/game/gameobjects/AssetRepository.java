@@ -45,6 +45,9 @@ public class AssetRepository {
         textures.put("tile_gravel", new Texture("tile_gravel.png"));
         textures.put("tile_wall", new Texture("tile_wall.png"));
         textures.put("tile_water", new Texture("tile_water.png"));
+        textures.put("zombie", new Texture("zombie.png"));
+        textures.put("vampire", new Texture("vampire.png"));
+
 
         allTextures = textures;
     }

@@ -1,16 +1,15 @@
 package at.compus02.swd.ss2022.game;
 
+import at.compus02.swd.ss2022.game.gameobjects.Enemies.Zombie;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import at.compus02.swd.ss2022.game.gameobjects.Player;
-import at.compus02.swd.ss2022.game.gameobjects.Sign;
+import at.compus02.swd.ss2022.game.gameobjects.factories.EnemyFactory;
 import at.compus02.swd.ss2022.game.gameobjects.factories.PlayerFactory;
 import at.compus02.swd.ss2022.game.gameobjects.factories.TileFactory;
-import at.compus02.swd.ss2022.game.gameobjects.tiles.GrasTile;
-import at.compus02.swd.ss2022.game.gameobjects.tiles.GravelTile;
 import at.compus02.swd.ss2022.game.input.GameInput;
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -18,9 +17,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends ApplicationAdapter {
@@ -35,19 +32,27 @@ public class Main extends ApplicationAdapter {
 	private final float logicFrameTime = 1 / updatesPerSecond;
 	private float deltaAccumulator = 0;
 	private BitmapFont font;
-	Player player;
-	TileFactory tilefactory = new TileFactory();
-	ArrayList<GameObject> tileObjects;
+	private PlayerFactory playerFactory = new PlayerFactory();
+	private ArrayList<GameObject> players;
+	private Player player;
+	private TileFactory tilefactory = new TileFactory();
+	private ArrayList<GameObject> tileObjects;
+	private EnemyFactory enemyFactory = new EnemyFactory();
+	private ArrayList<GameObject> enemies;
+
 
 
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
-
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		Gdx.input.setInputProcessor(this.gameInput);
-		player = new Player();
+
+		players = playerFactory.createStartingObject(1,"player1");
+		player	= (Player) players.get(0);
+
+		enemies = enemyFactory.createStartingObject(3, "ZOMBIE");
 		gameInput.setPlayer1(player);
 		tileObjects = tilefactory.createStartingObject(255, "GRAS");
 
@@ -66,7 +71,7 @@ public class Main extends ApplicationAdapter {
 		batch.begin();
 
 
-		int x = -240;
+		int x = -272;
 		int y = -240;
 
 		for(GameObject tile : tileObjects) {
