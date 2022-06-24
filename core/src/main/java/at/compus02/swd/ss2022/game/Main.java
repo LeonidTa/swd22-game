@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends ApplicationAdapter {
@@ -48,13 +49,38 @@ public class Main extends ApplicationAdapter {
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		Gdx.input.setInputProcessor(this.gameInput);
+		tileObjects = tilefactory.createStartingObject(255, "GRAS");
+
+		int x = -272;
+		int y = -240;
+
+		for(GameObject tile : tileObjects) {
+			x += 32;
+			if(x == 240) {
+				x = -240;
+				y += 32;
+			}
+			tile.setPosition(x, y);
+		}
+
 
 		players = playerFactory.createStartingObject(1,"player1");
 		player	= (Player) players.get(0);
 
 		enemies = enemyFactory.createStartingObject(10, "ZOMBIE");
+		for (GameObject enemy : enemies) {
+			//Zombieherde
+			Random random = new Random();
+			int enemyRandomX = random.ints(-240, 240)
+					.findFirst()
+					.getAsInt();
+			int enemyRandomY = random.ints(-240, 240)
+					.findFirst()
+					.getAsInt();
+			System.out.println(Math.random()*64);
+			enemy.setPosition(enemyRandomX, enemyRandomY);
+		}
 		gameInput.setPlayer1(player);
-		tileObjects = tilefactory.createStartingObject(255, "GRAS");
 
 	}
 
@@ -70,29 +96,14 @@ public class Main extends ApplicationAdapter {
 		batch.setProjectionMatrix(viewport.getCamera().combined);
 		batch.begin();
 
-
-		int x = -272;
-		int y = -240;
-
-
-		for(GameObject tile : tileObjects) {
-			x += 32;
-			if(x == 240) {
-				x = -240;
-				y += 32;
-			}
-			tile.setPosition(x, y);
+		for (GameObject tile : tileObjects) {
 			tile.draw(batch);
 		}
 
 		for (GameObject enemy : enemies) {
-			//Zombieherde
-			double enemyRandomX = Math.random()*64;
-			double enemyRandomY = Math.random()*64;
-			enemy.setPosition((int) enemyRandomX, (int) enemyRandomY);
 			enemy.draw(batch);
-
 		}
+
 		player.draw(batch);
 
 		font.draw(batch, "Hello Game", -220, -220);
