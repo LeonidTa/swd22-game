@@ -52,7 +52,7 @@ public class Main extends ApplicationAdapter {
 		players = playerFactory.createStartingObject(1,"player1");
 		player	= (Player) players.get(0);
 
-		enemies = enemyFactory.createStartingObject(3, "ZOMBIE");
+		enemies = enemyFactory.createStartingObject(10, "ZOMBIE");
 		gameInput.setPlayer1(player);
 		tileObjects = tilefactory.createStartingObject(255, "GRAS");
 
@@ -74,6 +74,7 @@ public class Main extends ApplicationAdapter {
 		int x = -272;
 		int y = -240;
 
+
 		for(GameObject tile : tileObjects) {
 			x += 32;
 			if(x == 240) {
@@ -82,6 +83,15 @@ public class Main extends ApplicationAdapter {
 			}
 			tile.setPosition(x, y);
 			tile.draw(batch);
+		}
+
+		for (GameObject enemy : enemies) {
+			//Zombieherde
+			double enemyRandomX = Math.random()*64;
+			double enemyRandomY = Math.random()*64;
+			enemy.setPosition((int) enemyRandomX, (int) enemyRandomY);
+			enemy.draw(batch);
+
 		}
 		player.draw(batch);
 

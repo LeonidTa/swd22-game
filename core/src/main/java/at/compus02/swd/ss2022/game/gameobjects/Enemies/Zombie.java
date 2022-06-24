@@ -2,6 +2,7 @@ package at.compus02.swd.ss2022.game.gameobjects.Enemies;
 
 import at.compus02.swd.ss2022.game.gameobjects.AssetRepository;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
+import at.compus02.swd.ss2022.game.input.GameInput;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -19,6 +20,7 @@ public class Zombie implements GameObject {
 
     @Override
     public void act(float delta) {
+
 
     }
 
