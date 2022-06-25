@@ -76,8 +76,6 @@ public class Main extends ApplicationAdapter {
 			gameObject.act(delta);
 		}
 		gameInput.setPlayer1(player);
-		player.getYPosition();
-		player.getYPosition();
 	}
 
 

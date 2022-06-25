@@ -50,4 +50,7 @@ public class Player implements GameObject {
         System.out.println(y);
         return this.y;
     }
+
+
+
 }

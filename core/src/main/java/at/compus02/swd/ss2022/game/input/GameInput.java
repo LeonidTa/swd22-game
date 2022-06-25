@@ -1,5 +1,4 @@
 package at.compus02.swd.ss2022.game.input;
-
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
@@ -29,6 +28,7 @@ public class GameInput extends InputAdapter{
             }
             return true;
     }
+
 
 
 }
