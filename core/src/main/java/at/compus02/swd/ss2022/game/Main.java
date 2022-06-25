@@ -99,10 +99,14 @@ public class Main extends ApplicationAdapter {
 			tile.draw(batch);
 		}
 
+		player.draw(batch);
+
+
 		for (GameObject enemy : enemies) {
+			Zombie zombie = (Zombie) enemy;
+			zombie.move(player);
 			enemy.draw(batch);
 		}
-		player.draw(batch);
 
 		font.draw(batch, "Hello Game", -220, -220);
 		batch.end();
