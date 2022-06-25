@@ -38,15 +38,21 @@ public class Zombie implements GameObject, Enemies{
     }
 
     @Override
-    public boolean move(Player player) {
-        float playerX = player.getXPosition();
-        float playerY = player.getYPosition();
+    public boolean move(float playerX, float playerY) {
         float abstandX = playerX - this.x;
         float abstandY = playerY - this.y;
 
-        if (abstandX <= -64 || abstandX <= 64 && abstandY <=-64 || abstandY <= 64) {
-            setPosition(playerX - 32, playerY -32);
+        if (abstandX >= -64 && abstandX <= -32) {
+            setPosition( + 1, this.y);
             return true;
+        } else if (abstandX <= 64 && abstandX >= 32) {
+            setPosition(- 1, this.y);
+            return true;
+        } else if (abstandY <= 64 && abstandY >= 32){
+            setPosition(this.x,  - 1);
+            return true;
+        } else if (abstandY >= -64 && abstandY <= -32){
+            setPosition(this.x,  + 1);
         }
 
         return false;

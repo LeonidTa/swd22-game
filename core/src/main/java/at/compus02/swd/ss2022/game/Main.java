@@ -104,7 +104,7 @@ public class Main extends ApplicationAdapter {
 
 		for (GameObject enemy : enemies) {
 			Zombie zombie = (Zombie) enemy;
-			zombie.move(player);
+			zombie.move(player.getXPosition(), player.getYPosition());
 			enemy.draw(batch);
 		}
 
