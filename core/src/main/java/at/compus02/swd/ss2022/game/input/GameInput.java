@@ -24,6 +24,8 @@ public class GameInput extends InputAdapter{
                 player1.setPosition(x -= 32, y);
             } else if (keycode == Input.Keys.RIGHT) {
                 player1.setPosition(x += 32, y);
+            } else if (keycode == Input.Keys.SPACE){
+
             }
             return true;
     }

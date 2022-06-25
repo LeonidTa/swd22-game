@@ -15,15 +15,12 @@ public class Zombie implements GameObject {
         AssetRepository.preloadAssets();
         image = AssetRepository.getTexture("zombie");
         sprite = new Sprite(image);
-
     }
 
     @Override
     public void act(float delta) {
 
-
     }
-
 
     @Override
     public void setPosition(float x, float y) {
@@ -34,4 +31,10 @@ public class Zombie implements GameObject {
     public void draw(SpriteBatch batch) {
         sprite.draw(batch);
     }
+
+    /*public boolean move(float x, float y) {
+        if () {
+
+        }
+    }*/
 }

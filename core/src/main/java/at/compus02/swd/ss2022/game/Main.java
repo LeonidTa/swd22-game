@@ -49,23 +49,12 @@ public class Main extends ApplicationAdapter {
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		Gdx.input.setInputProcessor(this.gameInput);
-		tileObjects = tilefactory.createStartingObject(255, "GRAS");
-
-		int x = -272;
-		int y = -240;
-
-		for(GameObject tile : tileObjects) {
-			x += 32;
-			if(x == 240) {
-				x = -240;
-				y += 32;
-			}
-			tile.setPosition(x, y);
-		}
-
 
 		players = playerFactory.createStartingObject(1,"player1");
 		player	= (Player) players.get(0);
+
+		enemies = enemyFactory.createStartingObject(10, "ZOMBIE");
+		tileObjects = tilefactory.createStartingObject(255, "GRAS");
 
 		enemies = enemyFactory.createStartingObject(10, "ZOMBIE");
 		for (GameObject enemy : enemies) {
@@ -80,14 +69,15 @@ public class Main extends ApplicationAdapter {
 			System.out.println(Math.random()*64);
 			enemy.setPosition(enemyRandomX, enemyRandomY);
 		}
-		gameInput.setPlayer1(player);
-
 	}
 
 	private void act(float delta) {
 		for(GameObject gameObject : gameObjects) {
 			gameObject.act(delta);
 		}
+		gameInput.setPlayer1(player);
+		player.getYPosition();
+		player.getYPosition();
 	}
 
 
@@ -96,14 +86,24 @@ public class Main extends ApplicationAdapter {
 		batch.setProjectionMatrix(viewport.getCamera().combined);
 		batch.begin();
 
-		for (GameObject tile : tileObjects) {
+
+		int x = -272;
+		int y = -240;
+
+
+		for(GameObject tile : tileObjects) {
+			x += 32;
+			if(x == 240) {
+				x = -240;
+				y += 32;
+			}
+			tile.setPosition(x, y);
 			tile.draw(batch);
 		}
 
 		for (GameObject enemy : enemies) {
 			enemy.draw(batch);
 		}
-
 		player.draw(batch);
 
 		font.draw(batch, "Hello Game", -220, -220);

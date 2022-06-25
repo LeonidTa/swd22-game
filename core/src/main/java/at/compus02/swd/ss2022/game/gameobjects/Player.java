@@ -23,13 +23,31 @@ public class Player implements GameObject {
     }
 
 
+    float x;
+    float y;
     @Override
     public void setPosition(float x, float y) {
         sprite.setPosition(x, y);
+        this.x = x;
+        this.y = y;
     }
 
     @Override
     public void draw(SpriteBatch batch) {
         sprite.draw(batch);
+    }
+
+    public void attack(int dmg) {
+
+    }
+
+    public float getXPosition() {
+        System.out.println(x);
+        return this.x;
+    }
+
+    public float getYPosition() {
+        System.out.println(y);
+        return this.y;
     }
 }
