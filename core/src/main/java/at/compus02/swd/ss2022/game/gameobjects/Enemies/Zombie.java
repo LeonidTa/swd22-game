@@ -44,11 +44,13 @@ public class Zombie implements GameObject, Enemies{
         float abstandX = playerX - this.x;
         float abstandY = playerY - this.y;
 
-        if (abstandX == -64 || abstandX == -64 && abstandY ==-64 || abstandY == 64) {
+        if (abstandX <= -64 || abstandX <= 64 && abstandY <=-64 || abstandY <= 64) {
             setPosition(playerX - 32, playerY -32);
             return true;
         }
 
         return false;
     }
+
+
 }
