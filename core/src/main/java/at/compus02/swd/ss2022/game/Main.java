@@ -1,7 +1,10 @@
 package at.compus02.swd.ss2022.game;
 
+import at.compus02.swd.ss2022.game.gameobjects.Enemies.Enemies;
 import at.compus02.swd.ss2022.game.gameobjects.Enemies.Zombie;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
+import at.compus02.swd.ss2022.game.gameobjects.Observer.EnemyPositionObserver;
+import at.compus02.swd.ss2022.game.gameobjects.Observer.PlayerPositionObserver;
 import at.compus02.swd.ss2022.game.gameobjects.Player;
 import at.compus02.swd.ss2022.game.gameobjects.factories.EnemyFactory;
 import at.compus02.swd.ss2022.game.gameobjects.factories.PlayerFactory;
@@ -41,6 +44,8 @@ public class Main extends ApplicationAdapter {
 	private EnemyFactory enemyFactory = new EnemyFactory();
 	private ArrayList<GameObject> enemies;
 
+	private PlayerPositionObserver ppo = new PlayerPositionObserver();
+	private EnemyPositionObserver epo = new EnemyPositionObserver();
 
 
 	@Override
@@ -67,8 +72,12 @@ public class Main extends ApplicationAdapter {
 					.findFirst()
 					.getAsInt();
 			System.out.println(Math.random()*64);
-			enemy.setPosition(enemyRandomX, enemyRandomY);
+			int newX= (enemyRandomX / 32) * 32;
+			int newY= (enemyRandomY / 32) * 32;
+			enemy.setPosition(newX, newY);
+
 		}
+
 	}
 
 	private void act(float delta) {
@@ -76,6 +85,7 @@ public class Main extends ApplicationAdapter {
 			gameObject.act(delta);
 		}
 		gameInput.setPlayer1(player);
+		epo.update(player.getXPosition(), player.getYPosition());
 	}
 
 

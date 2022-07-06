@@ -1,8 +1,12 @@
 package at.compus02.swd.ss2022.game.gameobjects;
 
+import at.compus02.swd.ss2022.game.gameobjects.Observer.PositionObserver;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player implements GameObject {
     private Texture image;
@@ -25,11 +29,16 @@ public class Player implements GameObject {
 
     float x;
     float y;
+
     @Override
     public void setPosition(float x, float y) {
         sprite.setPosition(x, y);
         this.x = x;
         this.y = y;
+
+        for (PositionObserver obs : observers) {
+            obs.update(this.x, this.y);
+        }
     }
 
     @Override
@@ -51,6 +60,15 @@ public class Player implements GameObject {
         return this.y;
     }
 
+    //########### OBSERVER ###########
+    private List<PositionObserver> observers = new ArrayList<>();
 
+    public void addObserver(PositionObserver obs) {
+        this.observers.add(obs);
+    }
+
+    public void removeObserver(PositionObserver obs) {
+        this.observers.remove(obs);
+    }
 
 }
