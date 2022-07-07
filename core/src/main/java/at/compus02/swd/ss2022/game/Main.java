@@ -1,6 +1,6 @@
 package at.compus02.swd.ss2022.game;
 
-import at.compus02.swd.ss2022.game.gameobjects.Enemies.Enemies;
+import at.compus02.swd.ss2022.game.gameobjects.Enemies.Vampire;
 import at.compus02.swd.ss2022.game.gameobjects.Enemies.Zombie;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import at.compus02.swd.ss2022.game.gameobjects.Observer.EnemyPositionObserver;
@@ -11,7 +11,6 @@ import at.compus02.swd.ss2022.game.gameobjects.factories.PlayerFactory;
 import at.compus02.swd.ss2022.game.gameobjects.factories.TileFactory;
 import at.compus02.swd.ss2022.game.input.GameInput;
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -61,7 +60,8 @@ public class Main extends ApplicationAdapter {
 		enemies = enemyFactory.createStartingObject(10, "ZOMBIE");
 		tileObjects = tilefactory.createStartingObject(255, "GRAS");
 
-		enemies = enemyFactory.createStartingObject(10, "ZOMBIE");
+		//enemies = enemyFactory.createStartingObject(10, "ZOMBIE");
+		enemies = enemyFactory.createStartingObject(10, "VAMPIRE");
 		for (GameObject enemy : enemies) {
 			//Zombieherde
 			Random random = new Random();
@@ -75,9 +75,7 @@ public class Main extends ApplicationAdapter {
 			int newX= (enemyRandomX / 32) * 32;
 			int newY= (enemyRandomY / 32) * 32;
 			enemy.setPosition(newX, newY);
-
 		}
-
 	}
 
 	private void act(float delta) {
@@ -94,10 +92,8 @@ public class Main extends ApplicationAdapter {
 		batch.setProjectionMatrix(viewport.getCamera().combined);
 		batch.begin();
 
-
 		int x = -272;
 		int y = -240;
-
 
 		for(GameObject tile : tileObjects) {
 			x += 32;
@@ -113,9 +109,10 @@ public class Main extends ApplicationAdapter {
 
 
 		for (GameObject enemy : enemies) {
-			Zombie zombie = (Zombie) enemy;
-			zombie.move(player.getXPosition(), player.getYPosition());
+			Vampire vampire = (Vampire) enemy;
+			vampire.move(player.getXPosition(), player.getYPosition());
 			enemy.draw(batch);
+			System.out.println(vampire.isAlive());
 		}
 
 		font.draw(batch, "Hello Game", -220, -220);

@@ -1,10 +1,10 @@
 package at.compus02.swd.ss2022.game.gameobjects.Enemies;
 
 import at.compus02.swd.ss2022.game.gameobjects.AssetRepository;
+import at.compus02.swd.ss2022.game.gameobjects.Enemies.strategyPattern.Enemies;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import at.compus02.swd.ss2022.game.gameobjects.Observer.PositionObserver;
-import at.compus02.swd.ss2022.game.gameobjects.Player;
-import at.compus02.swd.ss2022.game.input.GameInput;
+import at.compus02.swd.ss2022.game.gameobjects.Status;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -12,7 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Zombie implements GameObject, Enemies{
+public class Zombie implements GameObject, Enemies, Status {
     private Texture image;
     private Sprite sprite;
     private float x;
@@ -47,21 +47,6 @@ public class Zombie implements GameObject, Enemies{
 
     @Override
     public boolean move(float playerX, float playerY) {
-        float abstandX = playerX - this.x;
-        float abstandY = playerY - this.y;
-
-        if (abstandX >= -64 && abstandX <= -32) {
-            setPosition( + 1, this.y);
-            return true;
-        } else if (abstandX <= 64 && abstandX >= 32) {
-            setPosition(- 1, this.y);
-            return true;
-        } else if (abstandY <= 64 && abstandY >= 32){
-            setPosition(this.x,  - 1);
-            return true;
-        } else if (abstandY >= -64 && abstandY <= -32){
-            setPosition(this.x,  + 1);
-        }
 
         return false;
     }
@@ -78,4 +63,8 @@ public class Zombie implements GameObject, Enemies{
         this.observers.remove(obs);
     }
 
+    @Override
+    public boolean isAlive() {
+        return true;
+    }
 }
