@@ -3,8 +3,10 @@ package at.compus02.swd.ss2022.game.gameobjects.Enemies;
 import at.compus02.swd.ss2022.game.gameobjects.AssetRepository;
 import at.compus02.swd.ss2022.game.gameobjects.Enemies.strategyPattern.Enemies;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
+import at.compus02.swd.ss2022.game.gameobjects.Observer.PlayerPositionObserver;
 import at.compus02.swd.ss2022.game.gameobjects.Observer.PositionObserver;
 import at.compus02.swd.ss2022.game.gameobjects.Status;
+import at.compus02.swd.ss2022.game.input.AttackMode;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -12,11 +14,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Vampire implements GameObject, Enemies, Status {
+public class Vampire implements GameObject, Enemies, Status, AttackMode {
     private Texture image;
     private Sprite sprite;
     private float x;
     private float y;
+    private double health;
+
+    PlayerPositionObserver ppo = new PlayerPositionObserver();
+
 
     public Vampire() {
         AssetRepository.preloadAssets();
@@ -45,6 +51,15 @@ public class Vampire implements GameObject, Enemies, Status {
     @Override
     public void draw(SpriteBatch batch) {
         sprite.draw(batch);
+    }
+
+    @Override
+    public void setHealth(double health) {
+        this.health = health;
+    }
+
+    public double getHealth() {
+        return this.health;
     }
 
     @Override
@@ -88,5 +103,10 @@ public class Vampire implements GameObject, Enemies, Status {
 
     public void removeObserver(PositionObserver obs) {
         this.observers.remove(obs);
+    }
+
+    @Override
+    public void doDmg(double dmgAmount) {
+
     }
 }

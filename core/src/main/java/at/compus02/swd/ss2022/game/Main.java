@@ -63,7 +63,8 @@ public class Main extends ApplicationAdapter {
 		//enemies = enemyFactory.createStartingObject(10, "ZOMBIE");
 		enemies = enemyFactory.createStartingObject(10, "VAMPIRE");
 		for (GameObject enemy : enemies) {
-			//Zombieherde
+
+
 			Random random = new Random();
 			int enemyRandomX = random.ints(-240, 240)
 					.findFirst()
@@ -72,9 +73,10 @@ public class Main extends ApplicationAdapter {
 					.findFirst()
 					.getAsInt();
 			System.out.println(Math.random()*64);
-			int newX= (enemyRandomX / 32) * 32;
-			int newY= (enemyRandomY / 32) * 32;
+			int newX = (enemyRandomX / 32) * 32;
+			int newY = (enemyRandomY / 32) * 32;
 			enemy.setPosition(newX, newY);
+
 		}
 	}
 
@@ -83,7 +85,8 @@ public class Main extends ApplicationAdapter {
 			gameObject.act(delta);
 		}
 		gameInput.setPlayer1(player);
-		epo.update(player.getXPosition(), player.getYPosition());
+		ppo.update(player.getXPosition(), player.getYPosition());
+
 	}
 
 

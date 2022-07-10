@@ -4,13 +4,15 @@ import at.compus02.swd.ss2022.game.gameobjects.Observer.PositionObserver;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import jdk.vm.ci.code.Location;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player implements GameObject {
+public class Player implements GameObject, Status {
     private Texture image;
     private Sprite sprite;
+    private double health;
 
     public Player() {
         //tr.getTexture("Player");
@@ -46,7 +48,20 @@ public class Player implements GameObject {
         sprite.draw(batch);
     }
 
-    public void attack(int dmg) {
+    @Override
+    public boolean isAlive() {
+        if (this.health <= 0) {
+            System.out.println("You Died!");
+            return false;
+        } else return true;
+    }
+
+    @Override
+    public void setHealth(double health) {
+        this.health = 10;
+    }
+
+    public void attack(double dmg) {
 
     }
 
@@ -70,5 +85,12 @@ public class Player implements GameObject {
     public void removeObserver(PositionObserver obs) {
         this.observers.remove(obs);
     }
+
+    public boolean isNearEnemy() {
+        //write here code that checks if player 1 is in vacinity of an enemy
+
+    return false;
+    }
+
 
 }

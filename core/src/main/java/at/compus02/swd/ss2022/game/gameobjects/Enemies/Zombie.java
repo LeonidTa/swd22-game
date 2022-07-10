@@ -17,6 +17,9 @@ public class Zombie implements GameObject, Enemies, Status {
     private Sprite sprite;
     private float x;
     private float y;
+    public double health;
+
+
 
     public Zombie() {
         AssetRepository.preloadAssets();
@@ -46,10 +49,16 @@ public class Zombie implements GameObject, Enemies, Status {
     }
 
     @Override
+    public void setHealth(double health) {
+        this.health = health;
+    }
+
+    @Override
     public boolean move(float playerX, float playerY) {
 
         return false;
     }
+
 
 
     //########### OBSERVER ###########

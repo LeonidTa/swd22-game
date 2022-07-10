@@ -3,7 +3,7 @@ import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 
-public class GameInput extends InputAdapter{
+public class GameInput extends InputAdapter implements AttackMode{
     private GameObject player1;
     private int x = 0;
     private int y = 0;
@@ -30,5 +30,8 @@ public class GameInput extends InputAdapter{
     }
 
 
+    @Override
+    public void doDmg(double dmgAmount) {
 
+    }
 }

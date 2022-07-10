@@ -5,7 +5,6 @@ public class EnemyPositionObserver implements PositionObserver{
 
     @Override
     public void update(float x, float y) {
-        //do something
 
     }
 }

@@ -19,10 +19,14 @@ public class EnemyFactory implements AbstractFactory{
         for (int i = 0; i < numberOfObjects; i++) {
             switch (tileType) {
                 case "ZOMBIE":
-                    tileArray.add(new Zombie());
+                    Zombie z = new Zombie();
+                    z.setHealth(Math.random());
+                    tileArray.add(z);
                     break;
                 case "VAMPIRE":
-                    tileArray.add(new Vampire());
+                    Vampire v = new Vampire();
+                    v.setHealth(Math.random());
+                    tileArray.add(v);
                     break;
             }
         }
